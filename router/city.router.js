@@ -7,11 +7,11 @@ const {getCity, createCity, getCityById, updateCity, deleteCity} = cityControlle
 
 router.get('/', getCity)
 
+router.post('/', createCity)
+
 router.get('/:id', getCityById)
 
 router.put('/:id', updateCity)
-
-router.post('/', createCity)
 
 router.delete('/:id', deleteCity)
 

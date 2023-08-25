@@ -2,8 +2,6 @@ import City from "../models/cities.js"
 
 const controller = {
     getCity: async (req, res) => {
-        console.log(req.query)
-
         let queries = {}
 
         if (req.query.city) {
@@ -32,7 +30,7 @@ const controller = {
             console.log(error)
             return res.status(500).json({
                 success: false,
-                message: 'Error getting the cities'
+                message: 'Error getting cities'
             })
         }
     },
@@ -74,7 +72,7 @@ const controller = {
 
         } catch (error) {
             console.log(error)
-            return res.status(500).json({
+            res.status(500).json({
                 success: false,
                 message: 'Error creating city'
             })

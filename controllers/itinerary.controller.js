@@ -1,99 +1,99 @@
-import User from "../models/users.js";
+import Itinerary from "../models/itineraries.js";
 
 const controller = {
-    getUsers: async (req, res) => {
+    getItineraries: async (req, res) => {
         try {
-            const users = await User.find(req.body);
+            const itineraries = await Itinerary.find(req.body);
 
             return res.status(200).json({
                 success: true,
-                users: users,
+                itineraries: itineraries,
             })
         } catch (error) {
             console.log(error);
             res.status(500).json({
                 success: false,
-                message: 'Error getting user'
+                message: 'Error getting itineraries'
             })
         }
     },
 
-    createUser: async (req, res) => {
+    createItinerary: async (req, res) => {
         try {
-            const newUser = await User.create(req.body);
+            const newItinerary = await Itinerary.create(req.body);
 
             return res.status(200).json({
                 success: true,
-                message: 'User created',
+                message: 'Itinerary created',
             })
 
         } catch (error) {
             console.log(error);
             res.status(500).json({
                 success: false,
-                message: 'Error creating user'
+                message: 'Error creating itinerary'
             })
         }
     },
 
-    getUserById: async (req, res) => {
+    geItineraryById: async (req, res) => {
         try {
             console.log(req.params)
-            const oneUser = await User.findById(req.params.id)
+            const oneItinerary = await Itinerary.findById(req.params.id)
 
-            if (oneUser) {
+            if (oneItinerary) {
                 return res.status(200).json({
                     success: true,
-                    user: oneUser
+                    user: oneItinerary
                 })
             }
 
             return res.status(404).json({
                 success: false,
-                message: 'User not found'
+                message: 'Itinerary not found'
             })
 
         } catch (error) {
             console.log(error)
             return res.status(500).json({
                 success: false,
-                message: 'Error getting user'
+                message: 'Error getting itinerary'
             })
         }
     },
 
-    updateUser: async (req, res) => {
+    updateItinerary: async (req, res) => {
         try {
-            await User.updateOne({_id: req.params.id}, req.body)
+            await Itinerary.updateOne({_id: req.params.id}, req.body)
 
             return res.status(200).json({
                 success: true,
-                message: 'Updated user',
+                message: 'Updated itinerary',
             })
 
         } catch (error) {
             console.log(error)
             return res.status(500).json({
                 success: false,
-                message: 'Failed to update user'
+                message: 'Failed to update itinerary'
             })
         }
     },
 
-    deleteUser: async (req, res) => {
+    deleteItinerary: async (req, res) => {
         try {
-            await User.deleteOne({_id: req.params.id}, req.body)
+            await Itinerary.deleteOne({_id: req.params.id}, req.body)
 
             return res.status(200).json({
                 success: true,
-                message: 'Deleted user',
+                message: 'Deleted itinerary',
             })
 
         } catch (error) {
             console.log(error)
             return res.status(500).json({
                 success: false,
-                message: 'Failed to delete user'
+                message: 'Failed to delete itinerary'
             })
         }
     },
