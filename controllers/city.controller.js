@@ -13,7 +13,13 @@ const controller = {
         }
 
         try {
-            const cities = await City.find(queries).populate('user');
+            const cities = await City.find(queries)
+                .populate('user')
+                .populate({
+                    path: 'itinerary',
+                    populate: { path: 'user' } 
+                });
+
             if (cities.length > 0) {
                 return res.status(200).json({
                     success: true,
@@ -27,7 +33,7 @@ const controller = {
             })
 
         } catch (error) {
-            console.log(error)
+
             return res.status(500).json({
                 success: false,
                 message: 'Error getting cities'
@@ -35,12 +41,17 @@ const controller = {
         }
     },
 
-    getCityById: async (req, res) => {        
+    getCityById: async (req, res) => {
         try {
             console.log(req.params)
             const oneCity = await City.findById(req.params.id)
+            .populate('user')
+            .populate({
+                path: 'itinerary',
+                populate: { path: 'user' } 
+            });
 
-            if(oneCity) {
+            if (oneCity) {
                 return res.status(200).json({
                     success: true,
                     city: oneCity
@@ -51,9 +62,9 @@ const controller = {
                 success: false,
                 message: 'City not found'
             })
-            
+
         } catch (error) {
-            console.log(error)
+
             return res.status(500).json({
                 success: false,
                 message: 'Error getting city'
@@ -71,7 +82,7 @@ const controller = {
             })
 
         } catch (error) {
-            console.log(error)
+
             res.status(500).json({
                 success: false,
                 message: 'Error creating city'
@@ -81,7 +92,7 @@ const controller = {
 
     updateCity: async (req, res) => {
         try {
-            await City.updateOne({_id: req.params.id}, req.body)
+            await City.updateOne({ _id: req.params.id }, req.body)
 
             return res.status(200).json({
                 success: true,
@@ -89,7 +100,7 @@ const controller = {
             })
 
         } catch (error) {
-            console.log(error)
+
             return res.status(500).json({
                 success: false,
                 message: 'Failed to update city'
@@ -99,7 +110,7 @@ const controller = {
 
     deleteCity: async (req, res) => {
         try {
-            await City.deleteOne({_id: req.params.id}, req.body)
+            await City.deleteOne({ _id: req.params.id }, req.body)
 
             return res.status(200).json({
                 success: true,
@@ -107,7 +118,7 @@ const controller = {
             })
 
         } catch (error) {
-            console.log(error)
+
             return res.status(500).json({
                 success: false,
                 message: 'Failed to delete city'

@@ -1,9 +1,9 @@
-import Itinerary from "../models/itineraries.js";
+import Itineraries from "../models/itineraries.js";
 
 const controller = {
     getItineraries: async (req, res) => {
         try {
-            const itineraries = await Itinerary.find(req.body);
+            const itineraries = await Itineraries.find(req.body).populate('user');
 
             return res.status(200).json({
                 success: true,
@@ -20,7 +20,7 @@ const controller = {
 
     createItinerary: async (req, res) => {
         try {
-            const newItinerary = await Itinerary.create(req.body);
+            const newItinerary = await Itineraries.create(req.body);
 
             return res.status(200).json({
                 success: true,
@@ -39,7 +39,7 @@ const controller = {
     geItineraryById: async (req, res) => {
         try {
             console.log(req.params)
-            const oneItinerary = await Itinerary.findById(req.params.id)
+            const oneItinerary = await Itineraries.findById(req.params.id)
 
             if (oneItinerary) {
                 return res.status(200).json({
@@ -64,7 +64,7 @@ const controller = {
 
     updateItinerary: async (req, res) => {
         try {
-            await Itinerary.updateOne({_id: req.params.id}, req.body)
+            await Itineraries.updateOne({_id: req.params.id}, req.body)
 
             return res.status(200).json({
                 success: true,
@@ -82,7 +82,7 @@ const controller = {
 
     deleteItinerary: async (req, res) => {
         try {
-            await Itinerary.deleteOne({_id: req.params.id}, req.body)
+            await Itineraries.deleteOne({_id: req.params.id}, req.body)
 
             return res.status(200).json({
                 success: true,
