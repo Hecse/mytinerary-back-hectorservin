@@ -7,6 +7,7 @@ let schema = new Schema({
     photo: { type: String, required: true },
     price: { type: String, required: true },
     duration: { type: String, required: true },
+    hashtag: {type: String},
     user: { type: Types.ObjectId, ref: 'users' },
 }, {
     timestamps: true
