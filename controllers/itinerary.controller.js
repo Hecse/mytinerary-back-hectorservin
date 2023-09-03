@@ -1,6 +1,24 @@
 import Itineraries from "../models/itineraries.js";
 
 const controller = {
+    createItinerary: async (req, res) => {
+        try {
+            const newItinerary = await Itineraries.create(req.body);
+    
+            return res.status(200).json({
+                success: true,
+                message: 'Itinerary created',
+            })
+    
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({
+                success: false,
+                message: 'Error creating itinerary'
+            })
+        }
+    },
+
     getItineraries: async (req, res) => {
         try {
             const itineraries = await Itineraries.find(req.body).populate('user');
@@ -14,24 +32,6 @@ const controller = {
             res.status(500).json({
                 success: false,
                 message: 'Error getting itineraries'
-            })
-        }
-    },
-
-    createItinerary: async (req, res) => {
-        try {
-            const newItinerary = await Itineraries.create(req.body);
-
-            return res.status(200).json({
-                success: true,
-                message: 'Itinerary created',
-            })
-
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({
-                success: false,
-                message: 'Error creating itinerary'
             })
         }
     },
