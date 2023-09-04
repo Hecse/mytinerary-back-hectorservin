@@ -1,11 +1,13 @@
 import City from "../models/cities.js"
+import removeAccents from "remove-accents";
 
 const controller = {
     getCity: async (req, res) => {
         let queries = {}
 
         if (req.query.city) {
-            queries.city = new RegExp(`^${req.query.city}`, 'i')
+            const normalizedCity = removeAccents(req.query.city.trim());
+            queries.city = new RegExp(`^${normalizedCity}`, 'i');
         }
 
         if (req.query.country) {
