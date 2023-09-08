@@ -35,11 +35,7 @@ const controller = {
             })
 
         } catch (error) {
-
-            return res.status(500).json({
-                success: false,
-                message: 'Error getting cities'
-            })
+            next(error)
         }
     },
 
@@ -66,11 +62,7 @@ const controller = {
             })
 
         } catch (error) {
-
-            return res.status(500).json({
-                success: false,
-                message: 'Error getting city'
-            })
+            next(error)
         }
     },
 
@@ -84,11 +76,7 @@ const controller = {
             })
 
         } catch (error) {
-
-            res.status(500).json({
-                success: false,
-                message: 'Error creating city'
-            })
+            next(error)
         }
     },
 
@@ -102,11 +90,7 @@ const controller = {
             })
 
         } catch (error) {
-
-            return res.status(500).json({
-                success: false,
-                message: 'Failed to update city'
-            })
+            next(error)
         }
     },
 
@@ -120,11 +104,7 @@ const controller = {
             })
 
         } catch (error) {
-
-            return res.status(500).json({
-                success: false,
-                message: 'Failed to delete city'
-            })
+            next(error)
         }
     }
 }

@@ -10,11 +10,7 @@ const controller = {
                 users: users,
             })
         } catch (error) {
-            console.log(error);
-            res.status(500).json({
-                success: false,
-                message: 'Error getting user'
-            })
+            next(error)
         }
     },
 
@@ -28,11 +24,7 @@ const controller = {
             })
 
         } catch (error) {
-            console.log(error);
-            res.status(500).json({
-                success: false,
-                message: 'Error creating user'
-            })
+            next(error)
         }
     },
 
@@ -54,11 +46,7 @@ const controller = {
             })
 
         } catch (error) {
-            console.log(error)
-            return res.status(500).json({
-                success: false,
-                message: 'Error getting user'
-            })
+            next(error)
         }
     },
 
@@ -72,11 +60,7 @@ const controller = {
             })
 
         } catch (error) {
-            console.log(error)
-            return res.status(500).json({
-                success: false,
-                message: 'Failed to update user'
-            })
+            next(error)
         }
     },
 
@@ -90,11 +74,7 @@ const controller = {
             })
 
         } catch (error) {
-            console.log(error)
-            return res.status(500).json({
-                success: false,
-                message: 'Failed to delete user'
-            })
+            next(error)
         }
     },
 }

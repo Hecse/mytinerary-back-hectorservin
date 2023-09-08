@@ -11,11 +11,7 @@ const controller = {
             })
     
         } catch (error) {
-            console.log(error);
-            res.status(500).json({
-                success: false,
-                message: 'Error creating itinerary'
-            })
+            next(error)
         }
     },
 
@@ -28,11 +24,7 @@ const controller = {
                 itineraries: itineraries,
             })
         } catch (error) {
-            console.log(error);
-            res.status(500).json({
-                success: false,
-                message: 'Error getting itineraries'
-            })
+            next(error)
         }
     },
 
@@ -54,11 +46,7 @@ const controller = {
             })
 
         } catch (error) {
-            console.log(error)
-            return res.status(500).json({
-                success: false,
-                message: 'Error getting itinerary'
-            })
+            next(error)
         }
     },
 
@@ -72,11 +60,7 @@ const controller = {
             })
 
         } catch (error) {
-            console.log(error)
-            return res.status(500).json({
-                success: false,
-                message: 'Failed to update itinerary'
-            })
+            next(error)
         }
     },
 
@@ -90,11 +74,7 @@ const controller = {
             })
 
         } catch (error) {
-            console.log(error)
-            return res.status(500).json({
-                success: false,
-                message: 'Failed to delete itinerary'
-            })
+            next(error)
         }
     },
 }

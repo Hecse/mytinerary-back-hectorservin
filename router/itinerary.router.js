@@ -1,5 +1,7 @@
 import express from 'express';
 import itineraryController from '../controllers/itinerary.controller.js';
+import { validator } from '../middlewares/validator.js';
+import {createItinerarySchema} from '../schema/itinerary.schema.js'
 
 const router = express.Router();
 
@@ -7,7 +9,7 @@ const { getItineraries, createItinerary, geItineraryById, updateItinerary, delet
 
 router.get('/', getItineraries);
 
-router.post('/', createItinerary);
+router.post('/', validator(createItinerarySchema), createItinerary);
 
 router.get('/:id', geItineraryById);
 
