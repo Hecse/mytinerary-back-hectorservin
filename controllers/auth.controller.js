@@ -44,7 +44,7 @@ const controller = {
 
             return res.status(200).json({
                 succes: 'true',
-                message: 'Usuario logeado correctamente',
+                message: 'Usuario logueado correctamente',
                 response: {
                     token,
                     user: {
@@ -70,12 +70,28 @@ const controller = {
             )
             return res.status(200).json({
                 succes: true,
-                message: 'Usuario logeado'
+                message: 'Usuario deslogueado'
             })
         } catch (error) {
             next(error)
         }
-    }
+    },
+
+    token: async (req, res, next) => {
+        const { user } = req
+        try {
+            return res.status(200).json({
+                user: {
+                    name: user.name,
+                    lastname: user.lastname,
+                    email: user.email,
+                    image: user.image
+                },
+            })
+        } catch (error) {
+            next(error)
+        }
+    },
 }
 
 export default controller;
