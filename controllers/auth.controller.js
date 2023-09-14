@@ -14,7 +14,8 @@ const controller = {
 
             return res.status(201).json({
                 success: true,
-                message: 'Usuario registrado'
+                message: 'Usuario registrado',
+                user
             })
         } catch (error) {
             next(error)
