@@ -6,7 +6,7 @@ import { accountHasBeenVerified } from "../middlewares/auth/accountHasBeenVerifi
 import { passwordIsOk } from '../middlewares/auth/passwordIsOk.js'
 import { validator } from "../middlewares/validator.js";
 import passport from "../middlewares/auth/passport.js";
-import { createUserSchema } from "../schema/user.schema.js"; 
+import { createUserSchema, signinUserSchema } from "../schema/user.schema.js";
 
 const { signup, signin, signout, token, googlesignin } = authController
 
@@ -18,6 +18,7 @@ router.post('/signup',
     signup)
 
 router.post('/signin',
+    validator(signinUserSchema),
     accountExistSignin,
     accountHasBeenVerified,
     passwordIsOk,

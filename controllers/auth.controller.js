@@ -35,7 +35,8 @@ const controller = {
                     id: user._id,
                     email: user.email,
                     name: user.name,
-                    lastname: user.lastname
+                    lastname: user.lastname,
+                    image: user.image
                 },
                 process.env.SECRET,
                 { expiresIn: '8h' }
@@ -71,7 +72,7 @@ const controller = {
             // si encuentra el usuario trae los datos de google 
             let user = await User.findOne({ email });
 
-            // si el usuario no existe lo crea
+            // si el usuario no existe en mi base de datos lo crea con datos de google
             if (!user) {
                 const data = {
                     name,
@@ -94,7 +95,8 @@ const controller = {
                     id: user._id,
                     email: user.email,
                     name: user.name,
-                    lastname: user.lastname
+                    lastname: user.lastname,
+                    image: user.image
                 },
                 process.env.SECRET,
                 { expiresIn: '8h' }

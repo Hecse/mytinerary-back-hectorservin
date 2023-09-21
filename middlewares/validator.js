@@ -12,4 +12,3 @@ export const validator = (schema) => [
         return next();
     }
     ]
-
